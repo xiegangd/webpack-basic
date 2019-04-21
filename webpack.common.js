@@ -22,9 +22,6 @@ module.exports = {
             filename: 'css/index.css',
         }),
     ],
-    devServer: {
-        contentBase: './dist'
-    },
     module: {
         rules: [{
             test: /\.scss$/,
