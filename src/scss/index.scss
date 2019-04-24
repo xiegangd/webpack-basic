@@ -2,4 +2,7 @@ $bg-color: #f8f8f8; // abc
 
 body {
   background-color: $bg-color;
+  background-image: url("../img/logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
 }

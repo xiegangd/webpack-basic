@@ -23,13 +23,42 @@ module.exports = {
         }),
     ],
     module: {
-        rules: [{
-            test: /\.scss$/,
-            use: [
-                MiniCssExtractPlugin.loader,// extracts CSS into separate files
-                "css-loader", // translates CSS into CommonJS
-                "sass-loader" // compiles Sass to CSS, using Node Sass by default
-            ]
-        }]
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,// extracts CSS into separate files
+                        options: {
+                            publicPath: '../'
+                        }
+                    },
+
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                ]
+            },
+            {
+                test: /\.(png|svg|jpe?g|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'img',
+                            name: '[name].[ext]',
+                        },
+                    },
+                ]
+            },
+            {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        attrs: ['img:src']
+                    }
+                }
+            }
+        ]
     }
 };
