@@ -5,21 +5,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/js/index.js',
+    entry: {
+        index: './src/js/index.js',
+        post: './src/js/post.js',
+    },
     output: {
-        filename: 'js/index.js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            inject: true
+            inject: true,
+            chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: "post.html",
+            template: "./src/post.html",
+            inject: true,
+            chunks: ['post'],
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: 'css/index.css',
+            filename: 'css/[name].css',
         }),
     ],
     module: {
